@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<svg width="960" height="600"></svg>
+
+
+<style>
+    #inds{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+</style>
+
+<body>
+    <select id="inds">
+    </select>
+    <div id="clearAll">
+	<input name="clearAllButton"
+	 type="button"
+	 value="Clear All"
+	 onclick="clearAll()" />
+</div>
+
+</body>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 130, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var parseTime = d3.timeParse("%y");
+
+
+
+
+d3.csv("territory_data.csv", 
+    function(d) {
+    var num = d3.randomUniform(0, 10)();
+  //  console.log(d3.schemeCategory20[parseInt(num)]);
+    d.Year = +d.Year;
+    d.close = +d.Area1;
+    return d;
+    }, 
+    function(error, data) {
+    if (error) throw error; 
+    console.log(data);
+    dropDownGenerator(data);
+    
+    // to be modified
+	d3.select('#inds')
+			.on("change", function () {    //. on() is knid of a listener waiting for user interaction defined in "type" and carries out the function upon triggering
+				var sect = document.getElementById("inds");
+				var selectedDynasty = sect.options[sect.selectedIndex].value;
+				updateGraph(data,selectedDynasty);
+			});
+
+	// generate initial graph
+	updateGraph(data,null);
+    
+    
+    
+  //updateGraph(data);
+  //defining all the plotting message here
+  }
+); 
+  
+//====================== ALL self-defined functions go below ================================
+//===========================================================================================    
+function updateGraph(data,dynasty) {
+  var line = d3.line()
+    .x(function(d) { return x(d.Year); })
+    .y(function(d) { return y(d.close); });
+  var x = d3.scaleTime()
+    .rangeRound([0, width]);
+  var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+  x.domain(d3.extent(data, function(d) { return d.Year; }));
+  y.domain(d3.extent(data, function(d) { return d.close; }));
+
+  g.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+    .select(".domain")
+      .remove();
+
+  g.append("g")
+      .call(d3.axisLeft(y))
+    
+    
+  if(dynasty != null)
+      highlightGenerator(data, dynasty,x,y);
+
+  g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 1.5)
+      .attr("d", line);
+}
+    
+/***
+dropDownGenerator takes in the csv data and generate the option in drop down box 
+@para data : [year, dynast1, area]
+***/
+function dropDownGenerator(data) {
+    var dropDownText = "<option disabled selected value> -- select a dynasty -- </option>";
+    var lastDynasty = "invalidDynasty";
+    data = data.slice(0,data.length - 1);
+    data.forEach(function(row){
+        row.color = 3;
+        if(row.Dynasty1 != lastDynasty){
+            dropDownText += "<option value = '" + row.Dynasty1 + "'>" + row.Dynasty1 + "</option>";
+            lastDynasty = row.Dynasty1;
+        }  
+    })
+    console.log(data)
+    document.getElementById("inds").innerHTML = dropDownText;
+                 
+}
+    
+function highlightGenerator(data, dynasty,x,y){
+    var colorScale = d3.scaleOrdinal(d3.schemeCategory20);
+    var index1 = -1, index2 = -1;
+    for(var i = 0; i < data.length; i++){
+        if(data[i].Dynasty1 == dynasty){
+            index1 = i;
+            for(var j = i; j < data.length; j++){
+                if(data[j].Dynasty1 != dynasty){
+                    index2 = j;
+                    i = data.length;    //optimizing looping time
+                    break;
+                }
+            }
+        }
+    }
+    console.log(index2);
+    if(index2 == -1)
+        index2 = data.length;
+    
+    
+    
+    var area = d3.area()               //x is common-used x coordinates, while y is two groups of lines to define lower and upper boundary.
+                 .x(function(d) { return x(d.Year); })
+                 .y1(function(d) { return y(d.close); });
+    
+    console.log(index1);
+    console.log(index2);
+    highLightedData = data.slice(index1,index2 + 1);
+    console.log(highLightedData);
+    area.y0(y(125));
+    
+    g.append("path")
+      .datum(highLightedData)
+      .attr("d", area)
+      .attr("fill", function(){
+        var num = d3.randomUniform(0, 10)();
+        console.log(d3.schemeCategory20[parseInt(num)]);
+        return d3.schemeCategory20[parseInt(num)]
+    } )
+      .attr("class", "highlight");
+    
+    console.log("from year"+data[index1].Year);
+    console.log("to year"+data[index2].Year);
+    var text =g.append("text")
+      .attr("transform", "translate(" + x( (data[index1].Year + data[index2].Year)/2 ) + "," + height * 1.05 + "),rotate(-60)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")  
+      .text(dynasty)
+      .attr("class", "highlightText");
+    ;    
+}
+    
+function clearAll(){
+  d3.selectAll(".highlight")
+	.transition().duration(100)
+			.attr("d", function(d){
+        return null;
+      });
+    
+  d3.selectAll(".highlightText")
+	.transition().duration(100)
+    .style("opacity", 0);
+    
+};
+    
+
+
+</script>

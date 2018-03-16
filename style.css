@@ -1,0 +1,13 @@
+.line {
+  fill: none;
+  stroke: #EF5285;
+  stroke-width: 2px;
+}
+.annotation {
+    position:relative;
+  stroke: #EF5285;
+  stroke-width: 2px;
+    width: 450px;
+    bottom: 450px;
+    left:100px;
+}

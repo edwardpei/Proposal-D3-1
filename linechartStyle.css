@@ -1,15 +1,15 @@
-      #inds{
-        position:absolute;
+          #inds{
+            position:absolute;
         top:200px;
-        left:1150px;
+        left:1230px;
         }
         * {
             box-sizing: border-box;
         }
         #clearAll{
             position:absolute;
-                top:196px;
-                left:1380px;
+                top:195px;
+                left:1450px;
         }
         body {
             padding: 10px;
@@ -67,11 +67,13 @@
 
 
         #annotation_1 {
-          position: relative;
+          position: absolute;
           stroke:	#00FFFF;
          font-size:15px;
           stroke-width: 2px;
           width: 400px;
-          bottom: 900px;
-          right:500px;
-        Padding-top:30px;
+          bottom: 70px;
+            left:1100px;
+            padding:30px;
+          
+            

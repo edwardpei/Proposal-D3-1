@@ -196,10 +196,10 @@ svg.append("text")
     svg.append("text").attr("x", 910).attr("y", 85).text("Positive events(clickable)").style("fill", "red");
     svg.append("text").attr("x", 910).attr("y", 105).text("Negative events(clickable)").style("fill", "black");
     
-    svg.append("circle").attr("cx", 50).attr("cy", 401).attr("r", 4).style("fill", "red").on("click", mouseClick_1);
+     svg.append("circle").attr("cx", 50).attr("cy", 401).attr("r", 4).style("fill", "red").on("click", mouseClick_1);
     
     function mouseClick_1() {
-        d3.select("#annotation").text("From BC 230 to BC 221,  King Ying Zheng of Qin accomplished the impossible: defeating all 6 other warring states in ten years and for the first time in history uniting China, becoming the first emperor of China. The political system of centralization of authority that he designed lived on for more than 2000 years.");
+        d3.select("#annotation").text("From BC 230 to BC 221,  King Ying Zheng of Qin accomplished the impossible: defeating all 6 other warring states in ten years and for the first time in history uniting China, then became the first emperor of China. Althogh Qin dynasty quickly collapsed after his death, the political system of centralization of authority that he designed lived on for more than 2000 years.");
 }
     
     
@@ -208,13 +208,13 @@ svg.append("text")
   
        
     function mouseClick_2() {
-         d3.select("#annotation").text("At 157 BC, Emperor Wu of Han, who is considered one of the greatest emperors of China's history, started his 54-year reign: a record not broken until 1,800 years later. Emperor Wu led a vast territorial expansion and successfully repelled the nomadic Xiongnu from systematically raiding northern China.");
+         d3.select("#annotation").text("In 157 BC, Emperor Wu of Han, who is considered one of the greatest emperors of China's history, started his 54-year reign: a record not broken until 1,800 years later. Emperor Wu led a vast territorial expansion and successfully repelled the nomadic Xiongnu from systematically raiding northern China.");
 }
     
      g.append("circle").attr("cx", 102).attr("cy", 336  ).attr("r", 4).style("fill", "black").on("click", mouseClick_3);
 
     function mouseClick_3() {
-        d3.select("#annotation").text("At 9 AD, Wang Mang,who was a Han Dynasty official, usurped the throne from the Liu family and founded the Xin Dynasty, ruling 9–23 AD.The Han dynasty was restored by Liu family years after his overthrow. His rule marks the separation between the Western Han Dynasty (before Xin) and Eastern Han Dynasty (after Xin).");
+        d3.select("#annotation").text("In 9 AD, Wang Mang,who was a Han Dynasty official, usurped the throne from the Liu family and founded the Xin Dynasty, ruling 9–23 AD.The Han dynasty was restored by Liu family years after his overthrow. His rule marks the separation between the Western Han Dynasty (before Xin) and Eastern Han Dynasty (after Xin).");
 }
     
    /* svg.append("circle").attr("cx", 218.02502234137623).attr("cy", 290.01603375527426).attr("r", 4).style("fill", "black").on("click", mouseClick_4);
@@ -263,14 +263,14 @@ svg.append("text")
     g.append("circle").attr("cx", 390).attr("cy", 369).attr("r", 4).style("fill", "red").on("click", mouseClick_5);
     
     function mouseClick_5() {
-        d3.select("#annotation").text("At 626 AC, Emperor Taizong of Tang, who is considered to be one of the greatest emperors, usurped the throne from his brother. His era, the ''Reign of Zhenguan'' is considered a golden age during which Tang China flourished economically and militarily. For more than a century after his death, China enjoyed prosperity and peace while making large territorial expansion .");
+        d3.select("#annotation").text("In 626 AC, Emperor Taizong of Tang, who is considered to be one of the greatest emperors, usurped the throne from his brother. His era, the ''Reign of Zhenguan'' is considered a golden age during which Tang China flourished economically and militarily. For more than a century after his death, China enjoyed prosperity and peace while making large territorial expansion .");
 }
 
     
     g.append("circle").attr("cx", 449).attr("cy",  294).attr("r", 4).style("fill", "black").on("click", mouseClick_6);
 
     function mouseClick_6() {
-         d3.select("#annotation").text("The An–Shi Rebellion,started at 755 AC by general An,was a devastating rebellion against the Tang dynasty. Emperor Xuanzong of Tang was blamed for over-trusting general An by giving him an army of 200,000. The rebellion and subsequent disorder resulted in a huge loss of life and large-scale destruction. It significantly weakened the Tang dynasty, and led to the loss of the Western Regions.");
+         d3.select("#annotation").text("The An–Shi Rebellion,started In 755 AC by general An,was a devastating rebellion against the Tang dynasty. Emperor Xuanzong of Tang was blamed for over-trusting general An by giving him an army of 200,000. The rebellion and subsequent disorder resulted in a huge loss of life and large-scale destruction. It significantly weakened the Tang dynasty, and led to the loss of the Western Regions.");
 }
    
       
@@ -310,7 +310,7 @@ svg.append("text")
         d3.select("#annotation").text(" In 1792, the first envoy of Britain, whose primary aim was to open trade with Qing Dynasty, arrived in China. Even though they came with gifts and humble attitude, China refused to open trade. Emperor Qianlong arrogantly told the embassy: Our heavenly country needs nothing from you. But we shall graciously open trading spot in Macau for your needs.");
 }
     
-    1793
+    
     
          g.append("circle").attr("cx", 948).attr("cy", 213).attr("r", 4).style("fill", "black").on("click", mouseClick_10);
 
@@ -318,7 +318,6 @@ svg.append("text")
         d3.select("#annotation").text(" In the 17th and 18th centuries demand for Chinese goods in Europe created a trade imbalance between Qing Dynasty and Great Britain. To counter this imbalance, the British started selling opium , an addictive drug, to local middlemen in China. In 1839, Great Britain waged war against Qing for ordering a blockade of foreign trade and destroying 1210 tons of opium without offering compensation.")
     }
     
-
     
     
 //=======================================================Recursive Work From Blarry Ends==================================================================================   

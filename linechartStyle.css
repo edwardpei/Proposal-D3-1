@@ -1,7 +1,7 @@
       #inds{
         position:absolute;
-        top:200px;
-        left:1150px;
+        top:205px;
+        left:1230px;
         }
         * {
             box-sizing: border-box;
@@ -9,7 +9,7 @@
         #clearAll{
             position:absolute;
                 top:200px;
-                left:1350px;
+                left:1450px;
         }
         body {
             padding: 10px;
